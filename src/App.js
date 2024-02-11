@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// lib
+import React from 'react';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Provider } from "react-redux";
 
+// custom
+import "./localization/config";
+import store from "./redux/store/index";
+
+import AppRouter from "./router/index";
+
+const theme = createTheme();// add light or dark theme custom setting (now only light)
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <AppRouter/>
+      </ThemeProvider>
+    </Provider>
+  )
 }
 
 export default App;
